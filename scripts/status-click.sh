@@ -23,4 +23,3 @@ if [[ $status -ne 0 ]]; then
 	echo "[$(date)] - mouse_status_range: $mouse_status_range window_id: $window_id" >> ~/.local/share/tmux/scripts.log
 fi
 
-echo "mouse_status_range: $mouse_status_range window_id: $window_id" > ~/.local/share/tmux/scripts.log
