@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 BASE_PATH="$HOME/.config/tmux/themes"
-DEFAULT_THEME="$BASE_PATH/gentoo"
+DEFAULT_THEME="$BASE_PATH/night_market"
 
 get_theme() {
 	local theme="$1"
@@ -31,7 +31,13 @@ change_theme() {
 	if [[ -z $new_theme ]]; then
 		return 1
 	fi
-	sed -i '' 's/\(DEFAULT_THEME="$BASE_PATH\/\).*"/\1'"$new_theme"'"/g' "$script_path"
+	shopt -s nocasematch 
+	if [[ $(uname -a) =~ Linux ]]; then
+		sed -i 's/\(DEFAULT_THEME="$BASE_PATH\/\).*"/\1'"$new_theme"'"/g' "$script_path"
+	else 
+		sed -i '' 's/\(DEFAULT_THEME="$BASE_PATH\/\).*"/\1'"$new_theme"'"/g' "$script_path"
+	fi
+	shopt -u nocasematch 
 }
 
 source_theme() {
@@ -61,5 +67,3 @@ if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then
 	tmux bind-key -Troot F3 "$command"
 	source_theme 
 fi
-
-
