@@ -24,7 +24,7 @@ function _fzf_preview_tmux_session() {
 
 	local date="$(<<< "$session" cut -d ' '  -f3)"
 	if [[ $(uname -a) =~ Linux ]] ;then
-		date=$(date -d "$date" +"%Y-%m-%d %H:%M:%S" 2>/dev/null)
+		date=$(date -d "@$date" +"%Y-%m-%d %H:%M:%S" 2>/dev/null)
 	else
     	date=$(date -j -f "%s" "$date" +"%Y-%m-%d %H:%M:%S" 2>/dev/null)
 	fi
