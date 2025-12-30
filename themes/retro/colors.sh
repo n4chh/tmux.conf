@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-mode=$(defaults read -g AppleInterfaceStyle 2>/dev/null || echo Light)
+_script_path="$(dirname ${BASH_SOURCE[0]})"
+source "$_script_path/../selector.sh"
+mode=$(detect_terminal_bg)
 
 #
 #
@@ -27,7 +29,7 @@ SOURCE="#fdca6a"
 PRIMARY="#9fff19"
 SECONDARY="#3454BD"
 
-if [[ $mode == "Dark" ]]; then
+if [[ $mode == "dark" ]]; then
 	TERCIARY="$WARM_TERRA"
 
 	BLUE=#3487ed

@@ -62,8 +62,70 @@ fzf_theme_selector() {
 			--bind="enter:execute(source $BASE_PATH/selector.sh; source_theme {}; change_theme {})+accept"
 }
 
+setup_tmux_hooks() {
+	local themes_folder_path="$(dirname "${BASH_SOURCE[0]}")"
+	tmux set -g allow-passthrough
+	tmux set-hook -g client-light-theme "run-shell 'echo light > $themes_folder_path/mode.txt'"
+	tmux set-hook -g client-dark-theme "run-shell 'echo dark > $themes_folder_path/mode.txt'"
+}
+
+detect_terminal_bg() {
+	local tmux_version=$(tmux -V | cut -d ' ' -f 2)
+	local themes_folder_path="$(dirname "${BASH_SOURCE[0]}")"
+
+	if [[ "$tmux_version" =~ 3\.6 ]] && [[ -f "$themes_folder_path/mode.txt" ]]; then
+		cat "$themes_folder_path/mode.txt"
+	else
+		# first try to get actual background using osc, if not we check local system priority
+		if [[ $TERM =~ xterm ]]; then
+			# Get terminal bg color using Xterm OSC (Operative System Commands)
+			# Script from: https://stackoverflow.com/questions/2507337/how-to-determine-a-terminals-background-color
+			oldstty=$(stty -g)
+			# What to query?
+			# 11: text background
+			# Ps=${1:-11}
+			local Ps=11
+			stty raw -echo min 0 time 0
+			# stty raw -echo min 0 time 1
+			printf "\033]$Ps;?\033\\"
+			# xterm needs the sleep (or "time 1", but that is 1/10th second).
+			sleep 0.00000001
+			local answer
+			read -r answer
+			# echo $answer | cat -A
+			local result=${answer#*;}
+			stty $oldstty
+
+			if [[ "$result" =~ rgb:([0-9a-f]+)/([0-9a-f]+)/([0-9a-f]+) ]]; then
+			    r=$((0x${BASH_REMATCH[1]:0:2}))
+			    g=$((0x${BASH_REMATCH[2]:0:2}))
+			    b=$((0x${BASH_REMATCH[3]:0:2}))
+			    brightness=$(((r + g + b) / 3))
+
+			    if [[ $brightness -lt 128 ]];then
+					colorscheme="dark"
+				else
+					colorscheme="light"
+				fi
+			fi
+		fi
+
+		shopt -s nocasematch
+		if [[ -z colorscheme ]]; then
+			if [[ "$(uname -a)" =~ linux ]]; then
+				colorscheme=$(gsettings get org.gnome.desktop.interface color-scheme 2>/dev/null | grep -oiE 'dark|light')
+			else
+				colorscheme=$(defaults read -g AppleInterfaceStyle 2>/dev/null || echo Light)
+			fi
+		fi
+		shopt -u nocasematch
+		echo $colorscheme | awk '{print tolower($0)}'
+	fi
+}
+
 if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then
 	command="display-popup -T '🎨Theme selector' -E 'source ~/.config/tmux/themes/selector.sh; fzf_theme_selector'"
 	tmux bind-key -Troot F3 "$command"
+	setup_tmux_hooks
 	source_theme 
 fi

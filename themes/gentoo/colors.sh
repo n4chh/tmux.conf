@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
-_utils_path="$HOME/.config/tmux/themes/utils.sh"
-source $_utils_path
-mode=$(detect_mode 2>&1)
+_script_path="$(dirname ${BASH_SOURCE[0]})"
+source "$_script_path/../selector.sh"
+mode=$(detect_terminal_bg)
+
 BLUE=#3487ed
 RED=#DB0000
 WHITE=#ffffff
@@ -22,12 +23,10 @@ RED="#D9534F"
 GREY="#DDDAEC"
 ACCENT="#6E56AF"
 PRIMARY=$ACCENT
-shopt -s nocasematch
-if [[ $mode =~ dark ]]; then
+if [[ $mode == dark ]]; then
 	TAGBG="$BLACK"
     TAGFG="$GREY"
 else
     TAGFG=terminal
     TAGBG="$GREY"
 fi
-shopt -u nocasematch
