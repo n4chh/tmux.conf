@@ -35,7 +35,7 @@ if [[ $mode == "dark" ]]; then
 	BLUE=#9bc7fd
 	GREEN=$MINT_JADE
 	RED=#ff6070
-	YELLOW=$IVORY_SAND
+	YELLOW=#ebdb80
 	WHITE=#ffffff
 
     TAGFG="$COZY_WHITE"

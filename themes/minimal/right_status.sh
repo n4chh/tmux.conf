@@ -45,6 +45,7 @@ git_status() {
 
     	# Staged / unstaged / deleted
     	local staged=$(git -C "$pane_path" diff --cached --numstat 2>/dev/null | wc -l | tr -d ' ')
+		local untracked=$(git -C "$pane_path" ls-files --others --exclude-standard 2>/dev/null | wc -l | tr -d ' ')
     	local unstaged=$(git -C "$pane_path" diff --numstat 2>/dev/null | wc -l | tr -d ' ')
     	local deleted=$(git -C "$pane_path" ls-files --deleted 2>/dev/null | wc -l | tr -d ' ')
 
@@ -52,6 +53,7 @@ git_status() {
     	local stash=$(git -C "$pane_path" stash list 2>/dev/null | wc -l | tr -d ' ')
     	local details=""
     	[ "$staged" -gt 0 ]   && details+="#[fg=$GREEN]+$staged "
+    	[ "$untracked" -gt 0 ]   && details+="#[fg=terminal]?$untracked "
     	[ "$unstaged" -gt 0 ] && details+="#[fg=$YELLOW]~$unstaged "
     	[ "$deleted" -gt 0 ]  && details+="#[fg=$RED]-$deleted "
     	[ "$stash" -gt 0 ]    && details+="#[fg=$SUBTEXT0]󰏗 $stash "
