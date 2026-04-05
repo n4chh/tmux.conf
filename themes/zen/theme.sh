@@ -14,8 +14,8 @@ tmux set -g status on
 tmux set -g status-right-length 200
 tmux set -g status-left-length 40
 tmux set -g status-interval 1
-tmux set -g status-left "#($PWD/left_status.sh $PWD)"
-tmux set -g status-right "#($PWD/right_status.sh $PWD)"
+tmux set -g status-left '#('"$PWD"'/left_status.sh '"$PWD"')'
+tmux set -g status-right '#('"$PWD"'/right_status.sh '"$PWD"' #{pane_current_path})'
 
 
 tmux set -g window-status-format "#($PWD/window_status.sh $PWD)"
