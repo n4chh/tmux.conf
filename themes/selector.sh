@@ -132,5 +132,8 @@ if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then
 	command="display-popup -T '🎨Theme selector' -E 'source ~/.config/tmux/themes/selector.sh; fzf_theme_selector'"
 	tmux bind-key -Troot F3 "$command"
 	setup_tmux_hooks
-	source_theme 
+	theme_name="$(<<<"$DEFAULT_THEME" basename)"
+	msg="Loading theme $theme_name"
+	tmux display-popup -T "Sourcing theme" -x P -y P -h 4 -w 40 -EE "echo -en '$DEFAULT_THEME' ; sleep 1.5"
+	source_theme "$theme_name"
 fi
