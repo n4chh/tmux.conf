@@ -12,8 +12,8 @@ tmux set status-right "#($PWD/right_status.sh $PWD)"
 # ''
 # ''
 
-tmux setw -g window-status-separator ' '
-tmux setw -g window-status-format "#($PWD/window_status.sh $PWD)"
-tmux setw -g window-status-current-format "#($PWD/window_status.sh $PWD active)"
+tmux setw window-status-separator ' '
+tmux setw window-status-format "#($PWD/window_status.sh $PWD)"
+tmux setw window-status-current-format "#($PWD/window_status.sh $PWD active)"
 
 tmux set mouse on

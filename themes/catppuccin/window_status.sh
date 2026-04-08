@@ -3,7 +3,7 @@
 cd $1
 source colors.sh
 
-tmux setw -g window-status-separator ""
+tmux setw window-status-separator ""
 
 LEFT_ICON=""
 RIGHT_ICON=""

@@ -3,7 +3,7 @@
 cd $1
 source colors.sh
 
-tmux setw -g window-status-separator ''
+tmux setw window-status-separator ''
 
 function get_index_format() {
 	local i=("󰎡 " "󰬺 " "󰬻 " "󰬼 " "󰬽 " "󰬾 " "󰬿 " "󰭀 " "󰭁 " "󰭂 ")
