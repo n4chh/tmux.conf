@@ -2,7 +2,8 @@
 cd $1
 source ./colors.sh
 
-echo -n "#[fg=$SOURCE bold]"
+echo -n "#[range=left fg=$SOURCE ]"
+echo -n "#[fg=$PRIMARY nobold ]#W #[fg=terminal]at #[fg=$TAGFG bold]#S "
 echo -n "#{?#{==:#{pane_mode},copy-mode},[C],}"
 echo -n "#{?#{pane_mode},,[N]}"
-echo -n " #[fg=$TERCIARY nobold]❯#[fg=terminal] "
+echo -n " #[fg=$TERCIARY nobold]❯#[fg=terminal norange] "

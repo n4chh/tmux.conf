@@ -66,7 +66,6 @@ vpn=$(vpn_status)
 # echo -n "#[fg=$PRIMARY bg=$TAGBG]"
 # echo -n "$RIGHT_ICON"
 echo -n "$(git_status $PANE_PATH)"
-# echo -n "#[fg=$PRIMARY]#W #[fg=terminal]at #[fg=$TAGFG bold]#S "
 echo -n "$vpn"
 echo -n " "
 echo -n "#[fg=$PRIMARY]"
