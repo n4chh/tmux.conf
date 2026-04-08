@@ -34,7 +34,8 @@ function _fzf_preview_tmux_session() {
 	echo -e "\e[1mNAME:\e[0m $name"
 	echo -e "\e[1mCREATION DATE:\e[0m $date"
 	echo -e "\e[1mATTACHED:\e[0m $attached"
-	echo -e "\e[1mSESSION WORKING DIRECTORY:\e[0m $path"
+	echo -e "\e[1mSESSION WORKING DIRECTORY:\e[0m"
+	echo "$path"
 
 	local IFSOLD="$IFS"
 	local IFS=$'\n'
