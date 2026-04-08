@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-tmux set -g status on
-tmux set -g status-right-length 200
-tmux set -g status-left-length 40
-tmux set -g status-interval 1
-tmux set -g status-left "#($PWD/left_status.sh $PWD)"
-tmux set -g status-right "#($PWD/right_status.sh $PWD)"
+tmux set status on
+tmux set status-right-length 200
+tmux set status-left-length 40
+tmux set status-interval 1
+tmux set status-left "#($PWD/left_status.sh $PWD)"
+tmux set status-right "#($PWD/right_status.sh $PWD)"
 
 # icons
 # ''
@@ -22,18 +22,18 @@ command="display-popup -T '🗄️Session selector' -E '$script_path/sessions-fz
 tmux bind-key -T root MouseDown1StatusLeft "$command"
 tmux bind-key -Troot F1 "$command"
 
-tmux set -g window-status-format "#($PWD/window_status.sh $PWD)"
-tmux set -g window-status-current-format "#($PWD/window_status.sh $PWD active)"
+tmux set window-status-format "#($PWD/window_status.sh $PWD)"
+tmux set window-status-current-format "#($PWD/window_status.sh $PWD active)"
 
-tmux set -g mouse on
+tmux set mouse on
 
-tmux set -g pane-border-lines heavy
-tmux set -g pane-border-format ''
-tmux set -g pane-border-status top
-tmux set -g pane-border-style "fg=$OVERLAY0"
-tmux set -g pane-active-border-style "fg=$SAPPHIRE"
-tmux set -g status-style "bg=terminal fg=$ROSEWATER"
-tmux set -g message-style "fg=$TEXT bg=$SURFACE1"
-tmux set -g message-command-style "bg=$TEXT fg=$SURFACE1"
+tmux set pane-border-lines heavy
+tmux set pane-border-format ''
+tmux set pane-border-status top
+tmux set pane-border-style "fg=$OVERLAY0"
+tmux set pane-active-border-style "fg=$SAPPHIRE"
+tmux set status-style "bg=terminal fg=$ROSEWATER"
+tmux set message-style "fg=$TEXT bg=$SURFACE1"
+tmux set message-command-style "bg=$TEXT fg=$SURFACE1"
 
-tmux set -g status-position top
+tmux set status-position top

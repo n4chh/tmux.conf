@@ -23,14 +23,14 @@ function window_status() {
 	if [ $1 == "minimal" ]; then
 	echo -n "#[fg=$TAB_BG]"
 	# echo -n "#{?window_start_flag,#[bg=terminal],#[bg=$RED]}"
-	echo -n "#[range=window|#window_id]"
+	echo -n "#[range=user|window#{window_id}]"
 	# echo -n " "
 	# echo -n "•"
 	echo -n "#{?window_zoomed_flag,#[fg=$SECONDARY],}"
 	echo -n "●"
 	echo -n "#[norange] "
 else
-	echo -n "#[range=window|#window_id]"
+	echo -n "#[range=user|window#{window_id}]"
 	echo -n " "
 	echo -n "$(get_index_format)"
 	echo -n "#{?window_zoomed_flag, ,}"
@@ -51,13 +51,15 @@ else
 }
 function window_active_status() {
 	if [ $1 == "minimal" ]; then
+	echo -n "#[range=user|window#{window_id}]"
 	echo -n "#[fg=$ACTIVE_TAB_BG]"
 	# echo -n "#{?window_start_flag,#[bg=terminal],#[bg=$RED]}"
-	echo -n "#[range=window|#window_id]"
 	echo -n "#{?window_zoomed_flag,#[fg=$PRIMARY],}"
 	echo -n "●"
 	echo -n "#[norange] "
 else
+	echo -n "#[range=user|window#{window_id}]"
+	echo -n "#[fg=$ACTIVE_TAB_BG]"
 	echo -n "$LEFT_ICON"
 	echo -n "#[fg=$ACTIVE_TAB_FG bg=$ACTIVE_TAB_BG]"
 	echo -n " "

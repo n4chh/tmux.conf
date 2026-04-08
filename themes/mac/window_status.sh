@@ -21,7 +21,7 @@ function get_index_format() {
 
 function window_status() {
 	local tab_bg=terminal
-	echo -n "#[range=window|#window_id]"
+	echo -n "#[range=user|window#window_id]"
 	echo -n " "
 	echo -n "#[fg=$TAGFG bg=$tab_bg]"
 	echo -n " "
@@ -47,7 +47,7 @@ function window_status() {
 function window_active_status() {
 	local active_tab_bg=$PRIMARY
 	local tab_bg=terminal
-	echo -n "#[range=window|#window_id]"
+	echo -n "#[range=user|window#window_id]"
 	echo -n " "
 	echo -n "#[fg=$active_tab_bg]#{?window_start_flag,#[bg=terminal],#[bg=$tab_bg]}"
 	echo -n "$LEFT_ICON"

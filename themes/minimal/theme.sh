@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
-tmux set -g status-justify left
+tmux set status-justify left
 
-tmux set -g status on
-tmux set -g status-right-length 200
-tmux set -g status-left-length 40
-tmux set -g status-interval 1
-tmux set -g status-left '#('"$PWD"'/left_status.sh '"$PWD"')'
-tmux set -g status-right '#('"$PWD"'/right_status.sh '"$PWD"' #{pane_current_path})'
-tmux set -g base-index 1
-tmux set -g pane-base-index 1
+tmux set status on
+tmux set status-right-length 200
+tmux set status-left-length 40
+tmux set status-interval 1
+tmux set status-left '#('"$PWD"'/left_status.sh '"$PWD"')'
+tmux set status-right '#('"$PWD"'/right_status.sh '"$PWD"' #{pane_current_path})'
+tmux set base-index 1
+tmux set pane-base-index 1
 
 
 
@@ -22,21 +22,21 @@ tmux bind-key -T root MouseDown1StatusLeft "$command"
 tmux bind-key -Troot F1 "$command"
 
 
-tmux set -g window-status-bell-style "fg=$RED"
-tmux set -g window-status-format "#($PWD/window_status.sh $PWD)"
-tmux set -g window-status-current-format "#($PWD/window_status.sh $PWD active)"
-# tmux set -g window-status-current-format "#{E:window-status-format}"
+tmux set window-status-bell-style "fg=$RED"
+tmux set window-status-format "#($PWD/window_status.sh $PWD)"
+tmux set window-status-current-format "#($PWD/window_status.sh $PWD active)"
+# tmux set window-status-current-format "#{E:window-status-format}"
 
-tmux set -g mouse on
+tmux set mouse on
 
 source $PWD/colors.sh
 
-tmux set -g pane-border-lines heavy
-tmux set -g status-position top
-tmux set -g pane-border-status off
-tmux set -g pane-border-format "#[fg=terminal]"
-tmux set -g pane-border-format "#[fg=terminal]"
-tmux set-option -g pane-border-style 'fg=terminal'
-tmux set-option -g pane-active-border-style "fg=$ACCENT"
-tmux set-option -g status-style "bg=terminal fg=$ACCENT"
-# tmux set -g status-position bottom
+tmux set pane-border-lines heavy
+tmux set status-position top
+tmux set pane-border-status off
+tmux set pane-border-format "#[fg=terminal]"
+tmux set pane-border-format "#[fg=terminal]"
+tmux set pane-border-style 'fg=terminal'
+tmux set pane-active-border-style "fg=$ACCENT"
+tmux set status-style "bg=terminal fg=$ACCENT"
+# tmux set status-position bottom

@@ -23,7 +23,7 @@ function get_index_format() {
 
 function window_status() {
 	local tab_bg=terminal
-	echo -n "#[range=window|#window_id]"
+	echo -n "#[range=user|window#window_id]"
 	echo -n "#[fg=$TAGFG]"
 	# echo -n " "
 	# echo -n "$(get_index_format)"
@@ -41,7 +41,7 @@ function window_status() {
 function window_active_status() {
 	local active_tab_bg=$PRIMARY
 	local tab_bg=terminal
-	echo -n "#[range=window|#window_id]"
+	echo -n "#[range=user|window#window_id]"
 	echo -n "#[fg=$active_tab_bg]"
 	echo -n "#{?window_zoomed_flag,#[fg=$BRILLIANT_YELLOW],}"
 	# NOTE: current window highlight on bell or activity is no supported by tmux

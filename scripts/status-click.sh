@@ -2,9 +2,16 @@
 
 mouse_status_range="$1"
 window_id="$2"
+a=$3
 case "$mouse_status_range" in
 	window)
 		tmux select-window -t "$window_id"
+	;;
+	# user defined window status
+	# This is added due to a weird issue we have in some versions of tmux and with some plugins that have more
+	# than 1 line for status lines
+	window*)
+		tmux select-window -t "${mouse_status_range#window}"
 	;;
 	kill*)
 		tmux kill-window -t "${mouse_status_range#kill}"

@@ -22,7 +22,7 @@ else
 fi
 if [[ "$1" == "set" ]]; then
     echo "hey2" >/tmp/test
-    tmux set-option -g pane-border-style 'fg=terminal'
-    tmux set-option -g pane-active-border-style "fg=$SOURCE"
-    tmux set-option -g status-style "bg=terminal fg=$SOURCE"
+    tmux set pane-border-style 'fg=terminal'
+    tmux set pane-active-border-style "fg=$SOURCE"
+    tmux set status-style "bg=terminal fg=$SOURCE"
 fi

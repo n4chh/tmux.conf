@@ -10,7 +10,7 @@ RIGHT_ICON=""
 
 function window_status() {
 	local tab_bg=$SURFACE0
-	echo -n "#[range=window|#window_id]"
+	echo -n "#[range=user|window#window_id]"
 	echo -n "#[fg=$tab_bg]#{?window_start_flag,#[bg=terminal],#[bg=$tab_bg]}"
 	echo -n "$LEFT_ICON"
 	echo -n "#[fg=$SUBTEXT0 bg=$tab_bg]"

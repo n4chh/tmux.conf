@@ -22,7 +22,7 @@ function get_index_format() {
 function window_status() {
 	echo -n "#[fg=$TAB_BG]"
 	echo -n "#{?window_start_flag,#[bg=$TAG_BG],#[bg=$RED]}"
-	echo -n "#[range=window|#window_id]"
+	echo -n "#[range=user|window#window_id]"
 	# echo -n "$LEFT_ICON"
 	# echo -n "$LEFT_ICON"
 	echo -n "#[fg=$TAG_FGDIM bg=$TAB_BG]"
@@ -40,7 +40,7 @@ function window_status() {
 }
 function window_active_status() {
 	echo -n "#[fg=$ACTIVE_TAB_BG]"
-	echo -n "#[range=window|#window_id]"
+	echo -n "#[range=user|window#window_id]"
 	echo -n "#[fg=$ACTIVE_TAB_FG bg=$ACTIVE_TAB_BG]"
 	echo -n " "
 	echo -n "$(get_index_format)"
