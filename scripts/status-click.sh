@@ -19,12 +19,17 @@ case "$mouse_status_range" in
 	new)
 		tmux new-window
 	;;
+	git)
+		local_path=$(tmux display-message -p '#{pane_current_path}')
+		tmux display-popup -T " git: $local_path" -w 90% -h 90% -EE "lazygit -p '$local_path'"
+	;;
 	*)
 		echo "[$(date)] - mouse_status_range: $mouse_status_range window_id: $window_id" >> ~/.local/share/tmux/scripts.log
 	;;
 esac
 status=$?
 if [[ $status -ne 0 ]]; then
+	[[ -d ~/.local/share/tmux ]] || mkdir ~/.local/share/tmux
 	msg="Check logs at \e[1m~/.local/share/tmux"
 	tmux display-popup -T "Error code: $status" -x P -y P -h 4 -w 40 -EE "echo -en '$msg' ; sleep 1.5"
 	echo "[$(date)] - mouse_status_range: $mouse_status_range window_id: $window_id" >> ~/.local/share/tmux/scripts.log
