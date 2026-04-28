@@ -33,7 +33,7 @@ git_status() {
     echo -n "#[nobold fg=$TAGBG bg=terminal]"
     echo -n "$RIGHT_ICON "
 	if [ -n "$git_branch" ]; then
-    	echo -n "#[fg=$PRIMARY bold] #[fg=terminal]$git_branch"
+    	echo -n "#[fg=$PRIMARY bold range=user|git] #[fg=terminal]$git_branch"
     	# Ahead / behind
     	local ahead=$(git -C "$pane_path" rev-list --count @{u}..HEAD 2>/dev/null)
     	local behind=$(git -C "$pane_path" rev-list --count HEAD..@{u} 2>/dev/null)
@@ -55,6 +55,7 @@ git_status() {
     	[ "$ahead" -gt 0 ]    && details+="#[fg=$BLUE]󰁝 $ahead "
     	[ "$behind" -gt 0 ]   && details+="#[fg=$RED]󰁅 $behind "
     	[ -n "$details" ] && echo -n " ${details%* }" 
+		echo -n "#[norange]"
 	fi
 }
 
