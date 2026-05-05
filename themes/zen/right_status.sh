@@ -27,7 +27,7 @@ git_status() {
     echo -n "#[fg=$TAGBG]"
     echo -n "$LEFT_ICON"
     echo -n "#[fg=$TAGFG bg=$TAGBG]"
-    echo -n "#[fg=$PRIMARY bg=$TAGBG] "
+    echo -n "#[fg=$SECONDARY bg=$TAGBG] "
     echo -n "#[fg=$TAGFG bg=$TAGBG bold]"
 	echo -n "$pane_path"
     echo -n "#[nobold fg=$TAGBG bg=terminal]"

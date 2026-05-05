@@ -30,22 +30,22 @@ function window_status() {
 	echo -n "●"
 	echo -n "#[norange] "
 else
-	echo -n "#[range=user|window#{window_id}]"
+	echo -n "#[range=user|window#{window_id} fg=$FG]"
 	echo -n " "
 	echo -n "$(get_index_format)"
 	echo -n "#{?window_zoomed_flag, ,}"
 	echo -n "#W#[norange]"
 	echo -n " "
 	echo -n "#[range=user|kill#{window_id}]"
-	echo -n "#[fg=$RED]$LEFT_ICON#[fg=$WHITE bg=$RED]#[fg=$RED bg=$TAB_BG]"
+	echo -n "#[fg=$RED]$LEFT_ICON#[fg=$TAGFG bg=$RED]#[fg=$RED bg=$TAB_BG]"
 	echo -n "#{?window_end_flag,"
 	echo -n "#[bg=terminal],"
 	echo -n "#[bg=$tab_bg]"
 	echo -n "}#[fg=$RED bg=terminal norange]$RIGHT_ICON"
 	echo -n "#{?window_end_flag,"
 	echo -n " #[range=user|new]"
-	echo -n "#[fg=$SECONDARY bg=terminal]$LEFT_ICON"
-	echo -n "#[fg=$TAGFG bg=$SECONDARY]󱇬#[fg=$SECONDARY bg=terminal norange]$RIGHT_ICON"
+	echo -n "#[fg=$PRIMARY bg=terminal]$LEFT_ICON"
+	echo -n "#[fg=$TAGFG bg=$PRIMARY]󱇬#[fg=$PRIMARY bg=terminal norange]$RIGHT_ICON"
 	echo -n ",}"
 	fi
 }
@@ -68,7 +68,7 @@ else
 	echo -n "#[bold]#W#[nobold norange]"
 	echo -n " "
 	echo -n "#[range=user|kill#{window_id}]"
-	echo -n "#[fg=$RED]$LEFT_ICON#[fg=$WHITE bg=$RED]#[fg=$RED bg=$TAB_BG]"
+	echo -n "#[fg=$RED]$LEFT_ICON#[fg=$TAGFG bg=$RED]#[fg=$RED bg=$TAB_BG]"
 	echo -n "#{?window_end_flag,"
 	echo -n "#[bg=terminal],"
 	echo -n "#[bg=$ACTIVE_TAG_BG]"
@@ -76,8 +76,8 @@ else
 
 	echo -n "#{?window_end_flag,"
 	echo -n " #[range=user|new]"
-	echo -n "#[fg=$SECONDARY bg=terminal]$LEFT_ICON"
-	echo -n "#[fg=$TAGFG bg=$SECONDARY]󱇬#[fg=$SECONDARY bg=terminal norange]$RIGHT_ICON"
+	echo -n "#[fg=$PRIMARY bg=terminal]$LEFT_ICON"
+	echo -n "#[fg=$TAGFG bg=$PRIMARY]󱇬#[fg=$PRIMARY bg=terminal norange]$RIGHT_ICON"
 	echo -n ",}"
 	fi
 }
