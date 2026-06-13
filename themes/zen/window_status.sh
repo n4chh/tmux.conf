@@ -30,7 +30,8 @@ function window_status() {
 	echo -n "●"
 	echo -n "#[norange] "
 else
-	echo -n "#[range=user|window#{window_id} fg=$FG]"
+	echo -n "#[fg=$TAB_BG]"
+	echo -n "#[range=user|window#{window_id}]"
 	echo -n " "
 	echo -n "$(get_index_format)"
 	echo -n "#{?window_zoomed_flag, ,}"
