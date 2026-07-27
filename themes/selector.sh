@@ -130,7 +130,7 @@ detect_terminal_bg() {
 
 if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then
 	command="display-popup -T '🎨Theme selector' -E 'source ~/.config/tmux/themes/selector.sh; fzf_theme_selector'"
-	tmux bind-key -Troot F3 "$command"
+	tmux bind-key F3 "$command"
 	setup_tmux_hooks
 	theme_name="$(basename "$DEFAULT_THEME" )"
 	msg="Loading theme $theme_name"

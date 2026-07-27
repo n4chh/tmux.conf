@@ -18,7 +18,7 @@ tmux bind-key -Troot MouseDown1Status run-shell "$script_path/status-click.sh #{
 
 command="display-popup -T '🗄️Session selector' -E '$script_path/sessions-fzf.sh #{session_name}'"
 tmux bind-key -T root MouseDown1StatusLeft "$command"
-tmux bind-key -Troot F1 "$command"
+tmux bind-key F1 "$command"
 
 
 tmux set window-status-bell-style "fg=$RED"

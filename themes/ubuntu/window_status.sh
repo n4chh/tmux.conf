@@ -11,8 +11,8 @@ tmux setw window-status-separator ''
 window_status() {
     # Tab: dim number + name
     echo -n "#[range=user|window#{window_id} fg=$SECONDARY] #I "
-    echo -n "#{?window_zoomed_flag,#[fg=$YELLOW]$ZM ,}"
-    echo -n "#W#[norange]"
+    echo -n "#{?window_zoomed_flag,#[fg=$TERCIARY]$ZM ,}"
+    echo -n "#[fg=$SECONDARY]#W#[norange]"
     # Close button: red rounded pill with visible ✕
     echo -n " #[range=user|kill#{window_id} fg=$RED]"
     echo -n " $LEFT_ICON"
@@ -31,8 +31,8 @@ window_active_status() {
     echo -n " #[range=user|window#{window_id} fg=$ACTIVE_TAB_BG]$LEFT_ICON"
     # Tab content: number + name inside orange pill
     echo -n "#[fg=$ACTIVE_TAB_FG bg=$ACTIVE_TAB_BG]#I "
-    echo -n "#{?window_zoomed_flag,#[fg=$TAGBG]$ZM ,}"
-    echo -n "#[bold]#W#[nobold norange]"
+    echo -n "#{?window_zoomed_flag,#[fg=$PRIMARY]$ZM ,}"
+    echo -n "#[fg=$ACTIVE_TAB_FG]#[bold]#W#[nobold norange]"
     # Close button: ✕ in deep aubergine on orange, inside pill
     echo -n " #[range=user|kill#{window_id} fg=$TAGFG bg=$ACTIVE_TAB_BG] #[norange]"
     # Close pill back to terminal

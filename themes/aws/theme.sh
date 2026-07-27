@@ -18,7 +18,7 @@ tmux bind-key -Troot MouseDown1Status run-shell "$script_path/status-click.sh #{
 
 command="display-popup -T '🗄️Session selector' -E '$script_path/sessions-fzf.sh'"
 tmux bind-key -T root MouseDown1StatusLeft "$command"
-tmux bind-key -Troot F1 "$command"
+tmux bind-key F1 "$command"
 
 tmux set window-status-format "#($PWD/window_status.sh $PWD)"
 tmux set window-status-current-format "#($PWD/window_status.sh $PWD active)"

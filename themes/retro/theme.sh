@@ -12,7 +12,8 @@ tmux bind-key -Troot MouseDown1Status run-shell "$script_path/status-click.sh #{
 
 command="display-popup -T '🗄️Session selector' -E '$script_path/sessions-fzf.sh'"
 tmux bind-key -T root MouseDown1StatusLeft "$command"
-tmux bind-key -Troot F1 "$command"
+tmux bind-key F1 "$command"
+tmux bind-key F12 run-shell "$script_path/status-click.sh git"
 
 tmux set status-left "#($PWD/left_status.sh $PWD)"
 tmux set status-right "#($PWD/right_status.sh $PWD)"
